@@ -10,23 +10,26 @@ then
         set -f
         array=(${snapshots// / })
 
-        # echo snapshot list for verification
-        for i in "${!array[@]}"
-        do
-                echo "${array[i]}"
-        done
-
-        read -p "Really delete those snapshots? [y/N] " -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]
-        then
+        if [ -z "$array" ]; then
+                echo "Seems like there are less than $1 snapshots."
+        else
+                # echo snapshot list for verification
                 for i in "${!array[@]}"
                 do
-                        echo "destroying snapshot: ${array[i]}"
-                        zfs destroy -r "${array[i]}"
+                        echo "${array[i]}"
                 done
-        fi
 
+                read -p "Really delete those snapshots? [y/N] " -r
+                echo
+                if [[ $REPLY =~ ^[Yy]$ ]]
+                then
+                        for i in "${!array[@]}"
+                        do
+                                echo "destroying snapshot: ${array[i]}"
+                                zfs destroy -r "${array[i]}"
+                        done
+                fi
+        fi
 else
         echo "usage: $0 <num of snapshots to keep>"
 fi
