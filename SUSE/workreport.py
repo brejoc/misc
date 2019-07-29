@@ -11,8 +11,8 @@ import os
 import requests
 
 query = """query {
-  repository(owner: "SUSE", name: "salt-board") {
-    project(number: 1) {
+  repository(owner: "SUSE", name: "spacewalk") {
+    project(number: 38) {
       columns(first: 10) {
         nodes {
           name
