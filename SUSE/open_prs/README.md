@@ -1,3 +1,9 @@
+## 🛑️ ATTENTION 🛑️
+
+This project moved to [brejoc/teampulls](https://github.com/brejoc/teampulls).
+
+
+
 # What is it?
 
 This little script lists you all of the pull requests for a list of users from a list of repositories. On top of that every pull requests that is older than 14 days is printed in red.
